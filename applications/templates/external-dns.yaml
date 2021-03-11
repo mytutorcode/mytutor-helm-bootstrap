@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    syncPolicy:
+      automated: {}
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: external-dns
+    helm:
+      parameters:
+        - name: provider
+          value: "aws"
+        - name: registry
+          value: "txt"
+        - name: domainFilters
+          value: {{ .Values.spec.domainNames }}
+        - name: aws.zoneType
+          value: "public"
+        - name: serviceAccount.name
+          value: external-dns
+        - name: serviceAccount.annotations
+          value:
+            eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: aws

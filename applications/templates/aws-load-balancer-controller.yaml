@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-load-balancer-controller
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    syncPolicy:
+      automated: {}
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: aws-load-balancer-controller
+    helm:
+      parameters:
+        - name: clusterName
+          value: {{ .Values.spec.clusterName }}
+        - name: serviceAccount.create
+          value: "true"
+        - name: serviceAccount.name
+          value: aws-load-balancer-controller
+        - name: serviceAccount.annotations
+          value:
+            eks.amazonaws.com/role-arn: {{ .Values.spec.lbRoleArn }}
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: aws
