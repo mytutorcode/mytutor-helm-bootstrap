@@ -15,14 +15,13 @@ spec:
     helm:
       parameters:
         - name: clusterName
-          value: {{ .Values.spec.clusterName }}
+          value: "{{ .Values.spec.clusterName }}"
         - name: serviceAccount.create
           value: "true"
         - name: serviceAccount.name
           value: aws-load-balancer-controller
         - name: serviceAccount.annotations
-          value: eks.amazonaws.com/role-arn: {{ .Values.spec.lbRoleArn }}
-          forceString: true
+          value: "eks.amazonaws.com/role-arn: {{ .Values.spec.lbRoleArn }}"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: aws

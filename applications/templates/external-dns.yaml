@@ -19,13 +19,13 @@ spec:
         - name: registry
           value: "txt"
         - name: domainFilters
-          value: {{ .Values.spec.domainNames }}
+          value: "{{ .Values.spec.domainNames }}""
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
           value: external-dns
         - name: serviceAccount.annotations
-          value: eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}
+          value: "eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}"
           forceString: true
   destination:
     server: {{ .Values.spec.destination.server }}
