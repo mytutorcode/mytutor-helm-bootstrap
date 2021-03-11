@@ -19,7 +19,7 @@ spec:
         - name: serviceAccount.create
           value: "true"
         - name: serviceAccount.name
-          value: aws-load-balancer-controller
+          value: "aws-load-balancer-controller"
         - name: serviceAccount.annotations
           value:
             eks.amazonaws.com/role-arn: {{ .Values.spec.lbRoleArn }}

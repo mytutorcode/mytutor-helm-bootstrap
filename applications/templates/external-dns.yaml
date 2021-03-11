@@ -23,7 +23,7 @@ spec:
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
-          value: external-dns
+          value: "external-dns"
         - name: serviceAccount.annotations
           value:
             eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}
