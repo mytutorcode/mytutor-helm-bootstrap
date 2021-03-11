@@ -25,7 +25,7 @@ spec:
         - name: serviceAccount.name
           value: external-dns
         - name: serviceAccount.annotations
-          value: eks\.amazonaws\.com/role-arn={{ .Values.spec.dnsRoleArn }}
+          value: "eks\.amazonaws\.com/role-arn={{ .Values.spec.dnsRoleArn }}"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: aws
