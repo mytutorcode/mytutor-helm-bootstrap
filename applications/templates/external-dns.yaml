@@ -7,9 +7,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
+  syncPolicy:
+    automated: {}
   source:
-    syncPolicy:
-      automated: {}
     repoURL: https://charts.bitnami.com/bitnami
     chart: external-dns
     helm:
