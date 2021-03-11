@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   syncPolicy:
-    automated: {}
+      automated: {}
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: external-dns
@@ -23,10 +23,10 @@ spec:
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
-          value: "external-dns"
+          value: external-dns
         - name: serviceAccount.annotations
-          value:
-            eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}
+          value: eks.amazonaws.com/role-arn: {{ .Values.spec.dnsRoleArn }}
+          forceString: true
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: aws
