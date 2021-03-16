@@ -8,9 +8,10 @@ metadata:
 spec:
   project: default
   syncPolicy:
-      automated: {}
+    automated: {}
   source:
     repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: "4.9.0"
     chart: external-dns
     helm:
       parameters:
@@ -19,13 +20,13 @@ spec:
         - name: registry
           value: "txt"
         - name: domainFilters
-          value: {{ .Values.spec.domainNames }}
+          value: "{better-fish.mytutor.cloud}"
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
           value: external-dns
-        - name: serviceAccount.annotations
-          value: "eks\.amazonaws\.com/role-arn={{ .Values.spec.dnsRoleArn }}"
+        - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
+          value: {{ .Values.lbRoleArn }}
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: aws
