@@ -31,6 +31,8 @@ spec:
           value: "/login"
         - name: grafana.ingress.annotations.alb\.ingress\.kubernetes\.io/target-group-attributes
           value: "deregistration_delay.timeout_seconds=30"
+        - name: server.ingress.annotations.external-dns\.alpha\.kubernetes\.io/hostname
+          value: "grafana.{{ .Values.dnsName }}"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-prometheus-stack

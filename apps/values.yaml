@@ -5,3 +5,4 @@ domainFilters:
 dnsRoleArn:
 clusterName:
 lbRoleArn:
+dnsName:
