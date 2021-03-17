@@ -5,7 +5,7 @@ external-dns:
   provider: aws
   aws.zoneType: public
   registry: txt
-  domainFilters:
+  domainFilters: []
   serviceAcount.name: external-dns
   serviceAccount.annotations.eks\.amazonaws\.com/role-arn:
 aws-load-balancer-controller:
