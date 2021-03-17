@@ -20,7 +20,7 @@ spec:
         - name: registry
           value: "txt"
         - name: domainFilters
-          value: "{better-fish.mytutor.cloud}"
+          value: {{ .Values.domainFilters | quote }}
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
