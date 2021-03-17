@@ -20,7 +20,7 @@ spec:
         - name: registry
           value: "txt"
         - name: domainFilters
-          value: {{ .Values.domainFilters }}
+          value: {{ .Values.domainFilters | quote }}
         - name: aws.zoneType
           value: "public"
         - name: serviceAccount.name
