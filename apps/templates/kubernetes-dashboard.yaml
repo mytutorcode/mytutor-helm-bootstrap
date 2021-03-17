@@ -13,6 +13,12 @@ spec:
     repoURL: https://kubernetes.github.io/dashboard/
     targetRevision: "4.0.2"
     chart: kubernetes-dashboard
+    helm:
+      parameters:
+        - name: metrics-server.enabled
+          value: "true"
+        - name: metricsScraper.enabled
+          value: "true"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system
