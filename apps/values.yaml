@@ -1,18 +1,15 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
-external-dns:
-  provider: aws
-  aws.zoneType: public
-  registry: txt
-  domainFilters: []
-  serviceAcount.name: external-dns
-  serviceAccount.annotations.eks\.amazonaws\.com/role-arn:
-aws-load-balancer-controller:
-  clusterName:
-  serviceAccount.create: "true"
-  serviceAccount.name: "aws-load-balancer-controller"
-  serviceAccount.annotations.eks\.amazonaws\.com/role-arn:
-kubernetes-dashboard:
-  metrics-server.enabled: "true"
-  metricsScraper.enabled: "true"
+external-dns.provider: aws
+external-dns.aws.zoneType: public
+external-dns.registry: txt
+external-dns.domainFilters: []
+external-dns.serviceAcount.name: external-dns
+external-dns.serviceAccount.annotations.eks\.amazonaws\.com/role-arn:
+aws-load-balancer-controller.clusterName:
+aws-load-balancer-controller.serviceAccount.create: "true"
+aws-load-balancer-controller.serviceAccount.name: "aws-load-balancer-controller"
+aws-load-balancer-controller.serviceAccount.annotations.eks\.amazonaws\.com/role-arn:
+kubernetes-dashboard.metrics-server.enabled: "true"
+kubernetes-dashboard.metricsScraper.enabled: "true"
