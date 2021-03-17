@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: "14.0.1"
+    chart: kube-prometheus-stack
+    helm:
+      parameters:
+        - name: grafana.enabled
+          value: "true"
+        - name: grafana.ingress.enabled
+          value: "true"
+        - name: grafana.ingress.path
+          value: "/*"
+        - name: grafana.ingress.annotations.alb\.ingress\.kubernetes\.io/target-type
+          value: ip
+        - name: grafana.ingress.annotations.alb\.ingress\.kubernetes\.io/scheme
+          value: internet-facing
+        - name: grafana.ingress.annotations.kubernetes\.io/ingress\.class
+          value: {{ .Values.lbRoleArn }}
+        - name: grafana.ingress.annotations.alb\.ingress\.kubernetes\.io/healthcheck-path
+          value: "/login"
+        - name: grafana.ingress.annotations.alb\.ingress\.kubernetes\.io/target-group-attributes
+          value: "deregistration_delay.timeout_seconds=30"
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: aws
