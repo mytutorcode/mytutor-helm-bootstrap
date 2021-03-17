@@ -1,7 +1,7 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
-domainFilters: ""
+domainFilters: "{better-fish.mytutor.cloud}"
 dnsRoleArn:
 clusterName:
 lbRoleArn:
