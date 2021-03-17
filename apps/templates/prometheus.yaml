@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-dns
+  name: kube-prometheus-stack
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -33,4 +33,4 @@ spec:
           value: "deregistration_delay.timeout_seconds=30"
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: aws
+    namespace: kube-prometheus-stack
