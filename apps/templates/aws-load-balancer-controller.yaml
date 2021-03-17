@@ -13,16 +13,6 @@ spec:
     repoURL: https://aws.github.io/eks-charts
     targetRevision: "1.1.5"
     chart: aws-load-balancer-controller
-    helm:
-      parameters:
-        - name: clusterName
-          value: {{ .Values.clusterName }}
-        - name: serviceAccount.create
-          value: "true"
-        - name: serviceAccount.name
-          value: "aws-load-balancer-controller"
-        - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-          value: {{ .Values.lbRoleArn }}
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: aws
